@@ -24,6 +24,7 @@
           name = "sqlite-uuid";
 
           # https://devenv.sh/reference/options/
+          # on mac sqlite is not compiled with 'load' support
           packages = with pkgs; [ sqlite ];
 
         };
