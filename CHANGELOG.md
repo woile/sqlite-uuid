@@ -1,3 +1,9 @@
+## 0.2.4 (2024-02-12)
+
+### Fix
+
+- **ci**: use release action instead of upload artifcts
+
 ## 0.2.3 (2024-02-12)
 
 ### Fix
