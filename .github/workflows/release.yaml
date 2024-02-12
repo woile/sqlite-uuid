@@ -80,7 +80,7 @@ jobs:
       - name: create tar name
         id: file-name
         run: |
-          echo "FILE_NAME=libsqlite_uuid-$(uname -s)-$(uname -m)" >> "$GITHUB_OUTPUT"
+          echo "FILE_NAME=libsqlite_uuid-$(uname -s)-arm64" >> "$GITHUB_OUTPUT"
       - name: Compress action step
         uses: a7ul/tar-action@v1.1.0
         id: compress
