@@ -1,3 +1,9 @@
+## 0.2.3 (2024-02-12)
+
+### Fix
+
+- **ci**: create release and fix path names
+
 ## 0.2.2 (2024-02-12)
 
 ### Fix
