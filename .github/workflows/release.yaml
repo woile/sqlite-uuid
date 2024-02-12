@@ -20,7 +20,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: libsqlite-uuid-ubuntu
-          path: dist/release/libsqlite_uuid.so
+          path: target/release/libsqlite_uuid.so
   mac-release:
     name: cargo publish mac
     runs-on: macos-latest
@@ -32,7 +32,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: libsqlite-uuid-macos
-          path: dist/release/libsqlite_uuid.dylib
+          path: target/release/libsqlite_uuid.dylib
   mac-arm-release:
     name: cargo publish mac arm
     runs-on: macos-latest
@@ -46,4 +46,4 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: libsqlite-uuid-macos-arm
-          path: dist/release/libsqlite_uuid.dylib
+          path: target/release/libsqlite_uuid.dylib
