@@ -5,6 +5,12 @@ Add support for UUIDv4 and UUIDv7 to SQLite
 > [!CAUTION]
 > This is an experimental plugin
 
+## Installation
+
+```sh
+wget -qO- "https://github.com/woile/sqlite-uuid/releases/download/0.2.6/libsqlite_uuid-$(uname -s)-$(uname -m).tar.gz" | tar xvz
+```
+
 ## Usage
 
 ```sql
