@@ -1,3 +1,10 @@
+## 0.2.6 (2024-02-12)
+
+### Fix
+
+- update lock
+- **ci**: compress and upload
+
 ## 0.2.5 (2024-02-12)
 
 ### Fix
