@@ -52,7 +52,7 @@ jobs:
         with:
           targets: aarch64-apple-darwin
       - run: cargo build --release --target aarch64-apple-darwin
-      - run: cp target/release/libsqlite_uuid.dylib libsqlite-uuid-macos-arm
+      - run: cp target/aarch64-apple-darwin/release/libsqlite_uuid.dylib libsqlite-uuid-macos-arm
       - name: Upload artifacts
         uses: softprops/action-gh-release@v1
         with:
