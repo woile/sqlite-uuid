@@ -9,6 +9,8 @@ jobs:
   linux-release:
     name: cargo publish
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
       - uses: actions/checkout@v4
       - uses: dtolnay/rust-toolchain@stable
@@ -16,34 +18,44 @@ jobs:
         env:
             CRATES_TOKEN: ${{ secrets.CRATES_TOKEN }}
       - run: cargo build --release
+      - run: cp target/release/libsqlite_uuid.so libsqlite-uuid-ubuntu
       - name: Upload artifacts
-        uses: actions/upload-artifact@v2
+        uses: softprops/action-gh-release@v1
         with:
-          name: libsqlite-uuid-ubuntu
-          path: target/release/libsqlite_uuid.so
+          files: libsqlite-uuid-ubuntu
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   mac-release:
     name: cargo publish mac
     runs-on: macos-latest
+    permissions:
+      contents: write
     steps:
       - uses: actions/checkout@v4
       - uses: dtolnay/rust-toolchain@stable
       - run: cargo build --release
+      - run: cp target/release/libsqlite_uuid.dylib libsqlite-uuid-macos
       - name: Upload artifacts
-        uses: actions/upload-artifact@v2
+        uses: softprops/action-gh-release@v1
         with:
-          name: libsqlite-uuid-macos
-          path: target/release/libsqlite_uuid.dylib
+          files: libsqlite-uuid-macos
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   mac-arm-release:
     name: cargo publish mac arm
     runs-on: macos-latest
+    permissions:
+      contents: write
     steps:
       - uses: actions/checkout@v4
       - uses: dtolnay/rust-toolchain@stable
         with:
           targets: aarch64-apple-darwin
       - run: cargo build --release --target aarch64-apple-darwin
+      - run: cp target/release/libsqlite_uuid.dylib libsqlite-uuid-macos-arm
       - name: Upload artifacts
-        uses: actions/upload-artifact@v2
+        uses: softprops/action-gh-release@v1
         with:
-          name: libsqlite-uuid-macos-arm
-          path: target/release/libsqlite_uuid.dylib
+          files: libsqlite-uuid-macos-arm
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
