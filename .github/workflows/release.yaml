@@ -1,4 +1,4 @@
-name: test suite
+name: Release
 on:
     push:
       tags:
@@ -6,8 +6,8 @@ on:
 
 
 jobs:
-  test:
-    name: cargo test
+  linux-release:
+    name: cargo publish
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -15,3 +15,35 @@ jobs:
       - run: cargo publish --token ${CRATES_TOKEN}
         env:
             CRATES_TOKEN: ${{ secrets.CRATES_TOKEN }}
+      - run: cargo build --release
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: libsqlite-uuid-ubuntu
+          path: dist/release/libsqlite_uuid.so
+  mac-release:
+    name: cargo publish mac
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+      - run: cargo build --release
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: libsqlite-uuid-macos
+          path: dist/release/libsqlite_uuid.dylib
+  mac-arm-release:
+    name: cargo publish mac arm
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: aarch64-apple-darwin
+      - run: cargo build --release --target aarch64-apple-darwin
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: libsqlite-uuid-macos-arm
+          path: dist/release/libsqlite_uuid.dylib
