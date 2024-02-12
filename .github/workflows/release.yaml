@@ -18,11 +18,19 @@ jobs:
         env:
             CRATES_TOKEN: ${{ secrets.CRATES_TOKEN }}
       - run: cargo build --release
-      - run: cp target/release/libsqlite_uuid.so libsqlite-uuid-ubuntu
+      - run: cp target/release/libsqlite_uuid.so libsqlite_uuid.so
+      - name: Compress action step
+        uses: a7ul/tar-action@v1.1.0
+        id: compress
+        with:
+          command: c
+          files: |
+            ./libsqlite_uuid.so
+          outPath: libsqlite_uuid.linux.tar.gz
       - name: Upload artifacts
         uses: softprops/action-gh-release@v1
         with:
-          files: libsqlite-uuid-ubuntu
+          files: libsqlite_uuid.linux.tar.gz
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   mac-release:
@@ -34,11 +42,19 @@ jobs:
       - uses: actions/checkout@v4
       - uses: dtolnay/rust-toolchain@stable
       - run: cargo build --release
-      - run: cp target/release/libsqlite_uuid.dylib libsqlite-uuid-macos
+      - run: cp target/release/libsqlite_uuid.dylib libsqlite_uuid.dylib
+      - name: Compress action step
+        uses: a7ul/tar-action@v1.1.0
+        id: compress
+        with:
+          command: c
+          files: |
+            ./libsqlite_uuid.dylib
+          outPath: libsqlite_uuid.mac.tar.gz
       - name: Upload artifacts
         uses: softprops/action-gh-release@v1
         with:
-          files: libsqlite-uuid-macos
+          files: libsqlite_uuid.mac.tar.gz
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   mac-arm-release:
@@ -52,10 +68,18 @@ jobs:
         with:
           targets: aarch64-apple-darwin
       - run: cargo build --release --target aarch64-apple-darwin
-      - run: cp target/aarch64-apple-darwin/release/libsqlite_uuid.dylib libsqlite-uuid-macos-arm
+      - run: cp target/aarch64-apple-darwin/release/libsqlite_uuid.dylib libsqlite_uuid.dylib
+      - name: Compress action step
+        uses: a7ul/tar-action@v1.1.0
+        id: compress
+        with:
+          command: c
+          files: |
+            ./libsqlite_uuid.dylib
+          outPath: libsqlite_uuid.mac-arm.tar.gz
       - name: Upload artifacts
         uses: softprops/action-gh-release@v1
         with:
-          files: libsqlite-uuid-macos-arm
+          files: libsqlite_uuid.mac-arm.tar.gz
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
