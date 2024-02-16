@@ -25,7 +25,7 @@
 
           # https://devenv.sh/reference/options/
           # on mac sqlite is not compiled with 'load' support
-          packages = with pkgs; [ sqlite ];
+          packages = with pkgs; [ sqlite-interactive ];
 
         };
       };
