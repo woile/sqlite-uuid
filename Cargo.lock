@@ -435,7 +435,7 @@ dependencies = [
 
 [[package]]
 name = "sqlite-uuid"
-version = "0.2.4"
+version = "0.2.9"
 dependencies = [
  "sqlite-loadable",
  "uuid",

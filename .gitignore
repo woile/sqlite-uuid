@@ -3,3 +3,4 @@
 *.db*
 .direnv
 .devenv
+result

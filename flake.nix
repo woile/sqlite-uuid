@@ -20,6 +20,23 @@
       systems = [ "x86_64-linux" "x86_64-darwin" "aarch64-linux" "aarch64-darwin" ];
 
       perSystem = { config, self', inputs', pkgs, system, ... }: {
+        packages.default = pkgs.rustPlatform.buildRustPackage rec {
+          name = "libsqlite_uuid";
+          src = ./.;
+          cargoLock = {
+            lockFile = ./Cargo.lock;
+          };
+          doCheck = true;
+
+          buildInputs = with pkgs; [
+            sqlite-interactive
+          ] ++ lib.optionals stdenv.isDarwin [
+            libiconv
+            darwin.apple_sdk.frameworks.Security
+            darwin.apple_sdk.frameworks.Foundation
+          ];
+          nativeBuildInputs = with pkgs; [ pkg-config ];
+        };
         devenv.shells.default = {
           name = "sqlite-uuid";
 
