@@ -1,3 +1,9 @@
+## 0.2.9 (2024-02-16)
+
+### Fix
+
+- **flake**: use sqlite-interactive
+
 ## 0.2.8 (2024-02-12)
 
 ### Fix
