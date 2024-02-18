@@ -23,7 +23,7 @@ CREATE TABLE events(
 );
 
 INSERT INTO events(event_id, name) VALUES (uuid_blob(), 'up');
-INSERT INTO events(event_id, name) VALUES (uuid_blob(7), 'down');
+INSERT INTO events(event_id, name) VALUES (uuid_v7_blob(), 'down');
 INSERT INTO events(event_id, name) VALUES (uuid_as_blob('018d9887-42cd-7115-b1ca-18227ac211b4'), 'down');
 
 SELECT uuid_from_blob(event_id), name
@@ -46,19 +46,23 @@ SELECT event_id name FROM events_as_str;
 ## Functions
 
 ```sql
---- create a uuid as BLOB
+--- create a UUIDv4 as BLOB
 uuid_blob()
---- create a uuidv7 as BLOB
-uuid_blob(7)
 
---- create a uuid as TEXT
+--- create a UUIDv7 as BLOB (recommended)
+uuid_v7_blob()
+
+--- create a UUIDv4 as TEXT
 uuid()
---- create a uuidv7 as TEXT
-uuid(7)
 
---- convert TEXT uuid to BLOB
+--- create a UUIDv7 as TEXT
+uuid_v7()
+
+--- convert TEXT UUID to BLOB
 uuid_as_blob('018d9887-42cd-7115-b1ca-18227ac211b4')
 
---- convert uuid BLOB to TEXT
+--- convert UUID BLOB to TEXT
 uuid_from_blob(column_name)
 ```
+
+Thanks to the amazing work by [asg017](https://github.com/asg017) who built an amazing [sqlite-ecosystem](https://github.com/asg017/sqlite-ecosystem)
