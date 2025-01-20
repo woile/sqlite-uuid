@@ -9,7 +9,7 @@ repository = "https://github.com/woile/sqlite-uuid"
 
 [dependencies]
 sqlite-loadable = "0.0.6-alpha.6"
-uuid = { version = "1.11.0", features = ["std", "v7", "v4"] }
+uuid = { version = "1.12.0", features = ["std", "v7", "v4"] }
 
 [lib]
 crate-type=["cdylib"]
