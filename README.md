@@ -8,7 +8,7 @@ Add support for UUIDv4 and UUIDv7 to SQLite
 ## Installation
 
 ```sh
-wget -qO- "https://github.com/woile/sqlite-uuid/releases/download/0.4.1/libsqlite_uuid-$(uname -s)-$(uname -m).tar.gz" | tar xvz
+wget -qO- "https://github.com/woile/sqlite-uuid/releases/download/0.4.2/libsqlite_uuid-$(uname -s)-$(uname -m).tar.gz" | tar xvz
 ```
 
 ## Usage

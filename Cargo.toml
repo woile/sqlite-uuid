@@ -1,6 +1,6 @@
 [package]
 name = "sqlite-uuid"
-version = "0.4.1"
+version = "0.4.2"
 edition = "2021"
 license = "MIT"
 description = "Plugin to add support for uuids in sqlite"
